@@ -24,6 +24,10 @@ namespace FormClase10
     {
       InitializeComponent();
       this.Personas = personas;
+      foreach(Empleado item in Personas)
+      {
+        lstEmpleados.Items.Add(item.Mostrar());
+      }
     }
 
     private void btnAumentar_Click(object sender, EventArgs e)

@@ -9,7 +9,7 @@ namespace Clase10
   public class Jefe:Empleado
   {
     int bono;
-    public Jefe(string nombre, int cuil, float sueldo, int bono)
+    public Jefe(string nombre, double cuil, float sueldo, int bono)
       :base(nombre, cuil, sueldo)
     {
       this.bono = bono;

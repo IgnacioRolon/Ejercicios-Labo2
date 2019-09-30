@@ -9,7 +9,7 @@ namespace Clase10
   public class Empleado:Persona
   {
     float sueldo;
-    public Empleado(string nombre, int cuil, float sueldo)
+    public Empleado(string nombre, double cuil, float sueldo)
       :base(nombre, cuil)
     {
       this.sueldo = sueldo;

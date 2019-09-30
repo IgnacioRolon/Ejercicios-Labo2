@@ -60,29 +60,37 @@ namespace FormClase10
     private void btnAgregar_Click(object sender, EventArgs e)
     {
       Persona personaActual;
-      switch (cmbTipo.SelectedItem)
+      try
       {
-        case ETipoEmpleado.Empleado:
-          personaActual = new Empleado(txtNombre.Text, int.Parse(txtCuil.Text), float.Parse(txtSueldo.Text));
-          break;
-        case ETipoEmpleado.Vendedor:
-          personaActual = new Vendedor(txtNombre.Text, int.Parse(txtCuil.Text), float.Parse(txtSueldo.Text), int.Parse(txtObjetivoBono.Text));
-          break;
-        case ETipoEmpleado.Jefe:
-          personaActual = new Jefe(txtNombre.Text, int.Parse(txtCuil.Text), float.Parse(txtSueldo.Text), int.Parse(txtObjetivoBono.Text));
-          break;
-        default:
-          personaActual = new Empleado(txtNombre.Text, int.Parse(txtCuil.Text), float.Parse(txtSueldo.Text));
-          break;
-      }
-      Personas.Add(personaActual);
-      foreach(Control item in Controls)
-      {
-        if(item is TextBox)
+        switch (cmbTipo.SelectedItem)
         {
-          (item as TextBox).Clear();
+          case ETipoEmpleado.Empleado:
+            personaActual = new Empleado(txtNombre.Text, double.Parse(txtCuil.Text), float.Parse(txtSueldo.Text));
+            break;
+          case ETipoEmpleado.Vendedor:
+            personaActual = new Vendedor(txtNombre.Text, double.Parse(txtCuil.Text), float.Parse(txtSueldo.Text), int.Parse(txtObjetivoBono.Text));
+            break;
+          case ETipoEmpleado.Jefe:
+            personaActual = new Jefe(txtNombre.Text, double.Parse(txtCuil.Text), float.Parse(txtSueldo.Text), int.Parse(txtObjetivoBono.Text));
+            break;
+          default:
+            personaActual = new Empleado(txtNombre.Text, double.Parse(txtCuil.Text), float.Parse(txtSueldo.Text));
+            break;         
+        }
+        Personas.Add(personaActual);
+        foreach (Control item in Controls)
+        {
+          if (item is TextBox)
+          {
+            (item as TextBox).Clear();
+          }
         }
       }
+      catch(Exception ex)
+      {
+        MessageBox.Show(ex.Message);
+      }
+      
     }
 
     private void btnMostrar_Click(object sender, EventArgs e)
@@ -99,5 +107,7 @@ namespace FormClase10
       frm.Show();
       this.Hide();     
     }
+
+    
   }
 }

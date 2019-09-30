@@ -9,7 +9,7 @@ namespace Clase10
   public class Vendedor:Empleado
   {
     int objetivo;
-    public Vendedor(string nombre, int cuil, float sueldo, int objetivo)
+    public Vendedor(string nombre, double cuil, float sueldo, int objetivo)
       :base(nombre, cuil, sueldo)
     {
       this.objetivo = objetivo;
