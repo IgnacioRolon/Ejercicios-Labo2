@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CentralitaHerencia
 {
-  class Centralita
+  public class Centralita
   {
     private List<Llamada> listaDeLlamadas;
     protected string razonSocial;
@@ -81,7 +81,7 @@ namespace CentralitaHerencia
       return 0;
     }
 
-    public string Mostrar()
+    private string Mostrar()
     {
       StringBuilder str = new StringBuilder();
       str.AppendFormat("Razon Social: {0}, Ganancia Total: {1}, Ganancia Local: {2}, Ganancia Provincial: {3}\n", this.razonSocial, this.GananciasPorTotal, this.GananciasPorLocal, this.GananciasPorProvincial);
@@ -89,10 +89,10 @@ namespace CentralitaHerencia
       {
         if(item is Local)
         {
-          str.AppendLine((item as Local).Mostrar());
+          str.AppendLine((item as Local).ToString());
         }else if(item is Provincial)
         {
-          str.AppendLine((item as Provincial).Mostrar());
+          str.AppendLine((item as Provincial).ToString());
         }
       }
       return str.ToString();
@@ -101,6 +101,39 @@ namespace CentralitaHerencia
     public void OrdenarLlamadas()
     {
       this.listaDeLlamadas.Sort(Llamada.OrdenarPorDuración);
+    }
+    private void AgregarLlamada(Llamada nuevaLlamada)
+    {
+      this.Llamadas.Add(nuevaLlamada);
+    }
+
+    public static Centralita operator +(Centralita c, Llamada nuevaLlamada)
+    {
+      if(c != nuevaLlamada)
+      {
+        c.AgregarLlamada(nuevaLlamada);
+      }
+      return c;
+    }
+    public static bool operator ==(Centralita c, Llamada llamada)
+    {
+      foreach(Llamada item in c.Llamadas)
+      {
+        if(item == llamada)
+        {
+          return true;
+        }
+      }
+      return false;
+    }
+    public static bool operator !=(Centralita c, Llamada llamada)
+    {
+      return !(c == llamada);
+    }
+
+    public override string ToString()
+    {
+      return this.Mostrar();
     }
   }
 }

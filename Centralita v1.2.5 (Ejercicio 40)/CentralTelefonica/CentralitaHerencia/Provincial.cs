@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CentralitaHerencia
 {
-  class Provincial:Llamada
+  public class Provincial:Llamada
   {
     public enum Franja
     {
@@ -36,7 +36,7 @@ namespace CentralitaHerencia
 
     }
 
-    public override string Mostrar()
+    protected override string Mostrar()
     {
       StringBuilder str = new StringBuilder();
       string datosLlamada = base.Mostrar();
@@ -65,5 +65,18 @@ namespace CentralitaHerencia
       return this.duracion * costo;
     }
 
+    public override bool Equals(object obj)
+    {
+      if(obj is Provincial)
+      {
+        return true;
+      }
+      return false;
+    }
+
+    public override string ToString()
+    {
+      return this.Mostrar();
+    }
   }
 }

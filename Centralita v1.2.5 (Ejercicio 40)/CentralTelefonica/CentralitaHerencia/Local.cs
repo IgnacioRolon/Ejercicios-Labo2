@@ -30,7 +30,7 @@ namespace CentralitaHerencia
 
     }
 
-    public override string Mostrar()
+    protected override string Mostrar()
     {
       StringBuilder str = new StringBuilder();
       string datosLlamada = base.Mostrar();
@@ -41,6 +41,20 @@ namespace CentralitaHerencia
     private float CalcularCosto()
     {
       return this.duracion * this.costo;
+    }
+
+    public override bool Equals(object obj)
+    {
+      if(obj is Local)
+      {
+        return true;
+      }
+      return false;
+    }
+
+    public override string ToString()
+    {
+      return this.Mostrar();
     }
   }
 }
